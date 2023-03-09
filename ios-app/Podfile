@@ -4,7 +4,7 @@ source 'https://cdn.cocoapods.org/'
 inhibit_all_warnings!
 
 use_frameworks!
-platform :ios, '11.0'
+platform :ios, '12.0'
 
 # workaround for https://github.com/CocoaPods/CocoaPods/issues/8073
 # need for correct invalidate of cache MultiPlatformLibrary.framework
@@ -22,12 +22,25 @@ end
 
 target 'ios-app' do
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
-  pod 'MultiPlatformLibraryMvvm/Core',
-    :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.11.0'
-  pod 'MultiPlatformLibraryMvvm/AlamofireImage',
-    :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.11.0'
-  pod 'MultiPlatformLibraryMvvm/SkyFloatingLabelTextField',
-    :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.11.0'
-  pod 'MultiPlatformLibraryUnits/Core',
-    :git => 'https://github.com/icerockdev/moko-units.git', :tag => 'release/0.6.1'
+  pod 'MultiPlatformLibrarySwift', :path => '../mpp-library'
+  pod 'MultiPlatformLibraryUnits', :git => 'https://github.com/icerockdev/moko-units.git', :tag => 'release/0.8.0'
+  pod 'SkyFloatingLabelTextField', '~> 3.8.0'
+  
+  
+  post_install do |installer|
+    host_targets = installer.aggregate_targets.select { |aggregate_target|
+      aggregate_target.name.include? "Pods-"
+    }
+    
+    installer.pods_project.targets.each do |t|
+      t.build_configurations.each do |config|
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      end
+      if ['MultiPlatformLibrary', 'MultiPlatformLibraryMvvm', 'MultiPlatformLibrarySwift', 'MultiPlatformLibraryUnits'].include? t.name
+        t.build_configurations.each do |config|
+          config.build_settings['ENABLE_BITCODE'] = 'NO'
+        end
+      end
+    end
+  end
 end

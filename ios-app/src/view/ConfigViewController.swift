@@ -5,7 +5,7 @@
 import Foundation
 import UIKit
 import MultiPlatformLibrary
-import MultiPlatformLibraryMvvm
+import MultiPlatformLibrarySwift
 import SkyFloatingLabelTextField
 
 class ConfigViewController: UIViewController {
@@ -17,14 +17,20 @@ class ConfigViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = AppComponent.factory.configFactory.createConfigViewModel(eventsDispatcher: EventsDispatcher(listener: self))
-
+        viewModel = AppComponent.factory.configFactory.createConfigViewModel()
+        
+        viewModel.actions.subscribe(onCollect: { [weak self] action in
+            self?.handeAction(action: ConfigViewModelActionKs(action!))
+            
+        })
+        
+        
         // binding methods from https://github.com/icerockdev/moko-mvvm
         tokenField.bindTextTwoWay(liveData: viewModel.apiTokenField.data)
-        tokenField.bindError(liveData: viewModel.apiTokenField.error)
+        tokenField.bindText(liveData: viewModel.apiTokenField.error)
         
         languageField.bindTextTwoWay(liveData: viewModel.languageField.data)
-        languageField.bindError(liveData: viewModel.languageField.error)
+        languageField.bindText(liveData: viewModel.languageField.error)
     }
     
     @IBAction func onSubmitPressed() {
@@ -35,11 +41,10 @@ class ConfigViewController: UIViewController {
         // clean viewmodel to stop all coroutines immediately
         viewModel.onCleared()
     }
-}
-
-extension ConfigViewController: ConfigViewModelEventsListener {
-    // callsed from ViewModel by EventsDispatcher - see https://github.com/icerockdev/moko-mvvm
-    func routeToNews() {
-        performSegue(withIdentifier: "routeToNews", sender: nil)
+    
+    private func handeAction(action: ConfigViewModelActionKs) {
+        switch action {
+        case .routeToNews: performSegue(withIdentifier: "routeToNews", sender: nil)
+        }
     }
 }
