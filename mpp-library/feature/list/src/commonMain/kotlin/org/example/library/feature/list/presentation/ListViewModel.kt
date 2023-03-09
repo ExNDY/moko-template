@@ -4,47 +4,44 @@
 
 package org.example.library.feature.list.presentation
 
-import io.github.aakira.napier.Napier
 import dev.icerock.moko.mvvm.ResourceState
 import dev.icerock.moko.mvvm.asState
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
-import dev.icerock.moko.mvvm.livedata.dataTransform
 import dev.icerock.moko.mvvm.livedata.errorTransform
 import dev.icerock.moko.mvvm.livedata.map
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
-import dev.icerock.moko.units.TableUnitItem
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.launch
 import org.example.library.feature.list.model.ListSource
+import org.example.library.feature.list.model.News
 
 class ListViewModel<T>(
     private val listSource: ListSource<T>,
     private val strings: Strings,
-    private val unitsFactory: UnitsFactory<T>
 ) : ViewModel() {
 
-    private val _state: MutableLiveData<ResourceState<List<T>, Throwable>> =
+    private val _state: MutableLiveData<ResourceState<List<News>, Throwable>> =
         MutableLiveData(initialValue = ResourceState.Empty())
 
-    val state: LiveData<ResourceState<List<TableUnitItem>, StringDesc>> = _state
-        .dataTransform {
-            map { news ->
-                news.map { unitsFactory.createTile(it) }
-            }
-        }
+    val state: LiveData<ResourceState<List<News>, StringDesc>> = _state
         .errorTransform {
-            // new type inferrence require set types oO
+            // new type inference require set types oO
             map { it.message?.desc() ?: strings.unknownError.desc() }
         }
+
+    init {
+        loadList()
+    }
 
     fun onCreated() {
         loadList()
     }
 
-    fun onRetryPressed() {
+    fun onRetryClick() {
         loadList()
     }
 
@@ -76,10 +73,6 @@ class ListViewModel<T>(
                 _state.value = ResourceState.Failed(error)
             }
         }
-    }
-
-    interface UnitsFactory<T> {
-        fun createTile(data: T): TableUnitItem
     }
 
     interface Strings {

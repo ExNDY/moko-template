@@ -4,14 +4,13 @@
 
 package org.example.library
 
-import io.github.aakira.napier.Antilog
-import io.github.aakira.napier.Napier
 import com.russhwolf.settings.Settings
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
-import dev.icerock.moko.units.TableUnitItem
+import io.github.aakira.napier.Antilog
+import io.github.aakira.napier.Napier
 import io.ktor.client.engine.HttpClientEngine
 import org.example.library.domain.di.DomainFactory
 import org.example.library.domain.entity.News
@@ -26,7 +25,6 @@ class SharedFactory(
     settings: Settings,
     antilog: Antilog,
     baseUrl: String,
-    newsUnitsFactory: NewsUnitsFactory,
     httpClientEngine: HttpClientEngine?
 ) {
     // special for iOS call side we not use argument with default value
@@ -34,12 +32,10 @@ class SharedFactory(
         settings: Settings,
         antilog: Antilog,
         baseUrl: String,
-        newsUnitsFactory: NewsUnitsFactory
     ) : this(
         settings = settings,
         antilog = antilog,
         baseUrl = baseUrl,
-        newsUnitsFactory = newsUnitsFactory,
         httpClientEngine = null
     )
 
@@ -51,21 +47,18 @@ class SharedFactory(
 
     val newsFactory: ListFactory<News> = ListFactory(
         listSource = object : ListSource<News> {
-            override suspend fun getList(): List<News> {
-                return domainFactory.newsRepository.getNewsList()
+            override suspend fun getList(): List<org.example.library.feature.list.model.News> {
+                return domainFactory.newsRepository.getNewsList().map { news ->
+                    org.example.library.feature.list.model.News(
+                        id = news.id.toLong(),
+                        title = news.fullName,
+                        description = news.description
+                    )
+                }
             }
         },
         strings = object : ListViewModel.Strings {
             override val unknownError: StringResource = MR.strings.unknown_error
-        },
-        unitsFactory = object : ListViewModel.UnitsFactory<News> {
-            override fun createTile(data: News): TableUnitItem {
-                return newsUnitsFactory.createNewsTile(
-                    id = data.id.toLong(),
-                    title = data.fullName.orEmpty(),
-                    description = data.description?.desc() ?: MR.strings.no_description.desc()
-                )
-            }
         }
     )
 
@@ -109,13 +102,5 @@ class SharedFactory(
 
     init {
         Napier.base(antilog)
-    }
-
-    interface NewsUnitsFactory {
-        fun createNewsTile(
-            id: Long,
-            title: String,
-            description: StringDesc
-        ): TableUnitItem
     }
 }

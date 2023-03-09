@@ -10,9 +10,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.aakira.napier.Antilog
-import javax.inject.Singleton
 import org.example.app.BuildConfig
 import org.example.library.SharedFactory
+import javax.inject.Singleton
 
 /**
  * Module, that provides shared mutliplatform factory for Android platform
@@ -25,11 +25,9 @@ object SharedFactoryModule {
     fun provideMultiplatformFactory(
         settings: Settings,
         antilog: Antilog,
-        newsUnitFactory: SharedFactory.NewsUnitsFactory
     ): SharedFactory = SharedFactory(
         settings = settings,
         antilog = antilog,
-        newsUnitsFactory = newsUnitFactory,
         baseUrl = BuildConfig.BASE_URL
     )
 }

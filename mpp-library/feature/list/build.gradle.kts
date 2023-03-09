@@ -12,11 +12,13 @@ dependencies {
 
     androidMainImplementation(libs.lifecycleViewModel)
     androidMainImplementation(libs.recyclerView)
+    androidMainImplementation(libs.mokoMvvmLiveDataMaterial)
 
     commonMainImplementation(libs.mokoMvvmLiveData)
     commonMainImplementation(libs.mokoMvvmState)
     commonMainImplementation(libs.mokoResources)
-    commonMainImplementation(libs.mokoUnits)
+    commonMainApi(libs.mokoUnits)
+    commonMainImplementation(libs.mokoUnitsBasic)
 
     commonMainImplementation(libs.napier)
 }

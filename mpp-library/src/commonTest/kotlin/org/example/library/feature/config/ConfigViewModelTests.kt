@@ -1,17 +1,15 @@
 /*
- * Copyright 2021 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
+ * Copyright 2023 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
  */
 
 package org.example.library.feature.config
 
 import com.russhwolf.settings.MockSettings
 import com.russhwolf.settings.Settings
-import dev.icerock.moko.mvvm.dispatcher.EventsDispatcher
 import dev.icerock.moko.mvvm.test.TestViewModelScopeRule
-import dev.icerock.moko.mvvm.test.createTestEventsDispatcher
 import dev.icerock.moko.test.cases.InstantTaskRule
 import dev.icerock.moko.test.cases.TestCases
-import io.ktor.client.engine.mock.*
+import io.ktor.client.engine.mock.respondBadRequest
 import org.example.library.SharedFactory
 import org.example.library.createSharedFactory
 import org.example.library.feature.config.presentation.ConfigViewModel
@@ -26,18 +24,12 @@ class ConfigViewModelTests : TestCases() {
     )
 
     private lateinit var settings: MockSettings
-    private lateinit var listener: ConfigViewModel.EventsListener
     private lateinit var listenerEvents: List<String>
 
     @BeforeTest
     fun setup() {
         val events = mutableListOf<String>()
 
-        listener = object : ConfigViewModel.EventsListener {
-            override fun routeToNews() {
-                events.add("routeToNews")
-            }
-        }
         settings = MockSettings()
         listenerEvents = events
     }
@@ -46,7 +38,6 @@ class ConfigViewModelTests : TestCases() {
     fun `test default fields`() {
         val viewModel = createConfigViewModel(
             settings = settings,
-            eventsDispatcher = createTestEventsDispatcher(listener)
         )
 
         assertEquals(
@@ -66,7 +57,6 @@ class ConfigViewModelTests : TestCases() {
 
         val viewModel = createConfigViewModel(
             settings = settings,
-            eventsDispatcher = createTestEventsDispatcher(listener)
         )
 
         assertEquals(
@@ -81,11 +71,10 @@ class ConfigViewModelTests : TestCases() {
 
     private fun createConfigViewModel(
         settings: Settings,
-        eventsDispatcher: EventsDispatcher<ConfigViewModel.EventsListener>
     ): ConfigViewModel {
         val factory: SharedFactory = createSharedFactory(settings) {
             respondBadRequest()
         }
-        return factory.configFactory.createConfigViewModel(eventsDispatcher)
+        return factory.configFactory.createConfigViewModel()
     }
 }

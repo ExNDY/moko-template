@@ -1,15 +1,15 @@
 /*
- * Copyright 2021 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
+ * Copyright 2023 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
  */
 
 package org.example.library
 
 import io.github.aakira.napier.Antilog
-import io.github.aakira.napier.Napier
+import io.github.aakira.napier.LogLevel
 
 internal class TestAntilog : Antilog() {
     override fun performLog(
-        priority: Napier.Level,
+        priority: LogLevel,
         tag: String?,
         throwable: Throwable?,
         message: String?

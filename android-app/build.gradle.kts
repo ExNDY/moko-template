@@ -5,12 +5,15 @@
 plugins {
     id("android-app-convention")
     id("kotlin-kapt")
-    id("dev.icerock.mobile.multiplatform-units")
     id("dagger.hilt.android.plugin")
 }
 
 android {
-    buildFeatures.dataBinding = true
+    buildFeatures.compose = true
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
 
     defaultConfig {
         applicationId = "org.example.app"
@@ -23,31 +26,39 @@ android {
     }
 }
 
-kapt {
-    javacOptions {
-        // These options are normally set automatically via the Hilt Gradle plugin, but we
-        // set them manually to workaround a bug in the Kotlin 1.5.20
-        option("-Adagger.fastInit=ENABLED")
-        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
-    }
-}
-
 dependencies {
     implementation(libs.appCompat)
     implementation(libs.material)
     implementation(libs.recyclerView)
     implementation(libs.swipeRefreshLayout)
-    implementation(libs.mokoMvvmDataBinding)
+    implementation(libs.splashScreen)
+
+    // Compose
+    implementation(platform(libs.composeBom))
+    implementation(libs.composeMaterial)
+    implementation(libs.composeMaterialIcons)
+    implementation(libs.composeFoundation)
+    implementation(libs.composeFoundationLayout)
+    implementation(libs.composeConstraintLayout)
+    implementation(libs.composeUiPreview)
+    implementation(libs.composeActivity)
+    implementation(libs.composeNavigation)
+    implementation(libs.composeLivedata)
+    implementation(libs.composeCoil)
+    implementation(libs.mokoMvvmLiveDataCompose)
+    implementation(libs.mokoMvvmFlowCompose)
+    implementation(libs.mokoResourcesCompose)
+    implementation(libs.accompanistNavigationAnimation)
+
+    // Navigation
+    implementation(libs.navigationComponent)
+    implementation(libs.navigationUIComponent)
 
     // Hilt
     implementation(libs.hilt)
     kapt(libs.hiltCompiler)
 
     implementation(projects.mppLibrary)
-}
-
-multiplatformUnits {
-    classesPackage = "org.example.app"
-    dataBindingPackage = "org.example.app"
-    layoutsSourceSet = "main"
+    // Debug
+    debugImplementation(libs.composeUiTooling)
 }

@@ -1,48 +1,89 @@
 [versions]
 # kotlin
-kotlinVersion = "1.5.20"
+kotlinVersion = "1.8.10"
+androidGradleVersion = "7.4.2"
+detektVersion = "1.19.0"
+
 
 # kotlinx
-kotlinxSerializationVersion = "1.2.2"
-kotlinxDateTimeVersion = "0.2.1"
-coroutinesVersion = "1.5.1-native-mt"
+kotlinxSerializationVersion = "1.5.0"
+kotlinxDateTimeVersion = "0.3.3"
+coroutinesVersion = "1.6.4"
 
 # ktor
-ktorClientVersion = "1.6.1"
+ktorClientVersion = "2.2.2"
 
 # moko
-mokoGraphicsVersion = "0.8.0"
-mokoParcelizeVersion = "0.7.1"
-mokoResourcesVersion = "0.16.2"
-mokoMvvmVersion = "0.11.0"
-mokoErrorsVersion = "0.4.0"
-mokoNetworkVersion = "0.16.0"
-mokoUnitsVersion = "0.6.1"
-mokoPermissionsVersion = "0.10.1"
-mokoMediaVersion = "0.9.0"
-mokoFieldsVersion = "0.8.0"
-mokoTestVersion = "0.4.0"
+mokoMultiplatformPluginVersion = "0.14.1"
+mokoGraphicsVersion = "0.9.0"
+mokoParcelizeVersion = "0.8.0"
+mokoResourcesVersion = "0.20.1"
+mokoMvvmVersion = "0.15.0"
+mokoErrorsVersion = "0.6.0"
+mokoUnitsVersion = "0.8.0"
+mokoPermissionsVersion = "0.14.0"
+mokoMediaVersion = "0.10.0"
+mokoNetworkVersion = "0.20.0"
+mokoUtilsVersion = "0.3.0"
+mokoFieldsVersion = "0.11.0"
+mokoTestVersion = "0.6.1"
+mokoCrashReportingVersion = "0.4.0"
+mokoKSwiftVersion = "0.6.1"
 
 # multiplatform
-multiplatformSettingsVersion = "0.7.7"
-napierVersion = "1.5.0"
+multiplatformSettingsVersion = "0.9"
+napierVersion = "2.6.1"
+klockVersion = "3.4.0"
+
+# services
+googleServicesVersion = "4.3.8"
+firebaseCrashlyticsVersion = "18.3.5"
+firebaseAnalyticsVersion = "21.2.0"
+firebaseDynamicLinksVersion = "21.1.0"
+firebaseBomVersion = "31.2.2"
+
+firebaseCrashlyticsGradleVersion = "2.9.4"
+googleServicesGradleVersion = "4.3.15"
+
+# Compose
+composeBomVersion = "2023.01.00"
+composeVersion = "1.3.1"
+composeConstraintLayoutVersion = "1.0.1"
+composeActivityVersion = "1.6.1"
+composeNavigationVersion = "2.5.3"
+composeCoilVersion = "2.2.2"
+accompanistVersion = "0.28.0"
 
 # android
-materialVersion = "1.4.0"
+materialVersion = "1.8.0"
 recyclerViewVersion = "1.2.1"
 swipeRefreshLayoutVersion = "1.1.0"
-constraintLayoutVersion = "2.0.4"
-lifecycleVersion = "2.3.1"
-glideVersion = "4.12.0"
-hiltVersion = "2.38.1"
-androidAppCompatVersion = "1.3.1"
+constraintLayoutVersion = "2.1.4"
+lifecycleVersion = "2.5.1"
+glideVersion = "4.14.2"
+hiltVersion = "2.44"
+androidAppCompatVersion = "1.6.1"
 multidexVersion = "2.0.1"
+navigationComponentVersion = "2.5.3"
+
+androidFiftyShades = "-SNAPSHOT"
+cameraxVersion = "1.3.0-alpha04"
+cameraViewVersion = "1.3.0-alpha04"
+uiToolingVersion = "1.3.3"
+zxingCoreVersion = "3.2.0"
+zxingVersion = "3.0.2@aar"
+segmentedProgressBarVersion = "0.0.1"
+inputMaskVersion = "6.1.0"
+swipeRevealLayoutVersion = "1.4.1"
+photoViewVersion = "2.3.0"
+flexBoxVersion = "3.0.0"
+splashScreenVersion = "1.0.0"
 
 # android tests
-espressoCoreVersion = "3.2.0"
-testRunnerVersion = "1.2.0"
-testExtJunitVersion = "1.1.1"
-testCoreVersion = "1.3.0"
+espressoCoreVersion = "3.5.1"
+testRunnerVersion = "1.5.2"
+testExtJunitVersion = "1.1.5"
+testCoreVersion = "1.5.0"
 robolectricVersion = "4.6.1"
 
 [libraries]
@@ -62,32 +103,78 @@ ktorClientMock = { module = "io.ktor:ktor-client-mock", version.ref = "ktorClien
 
 # moko
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResourcesVersion" }
+mokoResourcesCompose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResourcesVersion" }
 mokoParcelize = { module = "dev.icerock.moko:parcelize", version.ref = "mokoParcelizeVersion" }
 mokoGraphics = { module = "dev.icerock.moko:graphics", version.ref = "mokoGraphicsVersion" }
 mokoErrors = { module = "dev.icerock.moko:errors", version.ref = "mokoErrorsVersion" }
 mokoPermissions = { module = "dev.icerock.moko:permissions", version.ref = "mokoPermissionsVersion" }
+mokoPermissionsCompose = { module = "dev.icerock.moko:permissions-compose", version.ref = "mokoPermissionsVersion" }
 mokoMedia = { module = "dev.icerock.moko:media", version.ref = "mokoMediaVersion" }
-mokoFields = { module = "dev.icerock.moko:fields", version.ref = "mokoFieldsVersion" }
+mokoFieldsCore = { module = "dev.icerock.moko:fields-core", version.ref = "mokoFieldsVersion" }
+mokoFieldsLiveData = { module = "dev.icerock.moko:fields-livedata", version.ref = "mokoFieldsVersion" }
+mokoFieldsFlow = { module = "dev.icerock.moko:fields-flow", version.ref = "mokoFieldsVersion" }
 mokoTestCore = { module = "dev.icerock.moko:test-core", version.ref = "mokoTestVersion" }
 
 mokoMvvmCore = { module = "dev.icerock.moko:mvvm-core", version.ref = "mokoMvvmVersion" }
+mokoMvvmFlow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "mokoMvvmVersion" }
+mokoMvvmFlowCompose = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "mokoMvvmVersion" }
 mokoMvvmLiveData = { module = "dev.icerock.moko:mvvm-livedata", version.ref = "mokoMvvmVersion" }
+mokoMvvmLiveDataResources = { module = "dev.icerock.moko:mvvm-livedata-resources", version.ref = "mokoMvvmVersion" }
+mokoMvvmLiveDataCompose = { module = "dev.icerock.moko:mvvm-livedata-compose", version.ref = "mokoMvvmVersion" }
+mokoMvvmLiveDataMaterial = { module = "dev.icerock.moko:mvvm-livedata-material", version.ref = "mokoMvvmVersion" }
 mokoMvvmState = { module = "dev.icerock.moko:mvvm-state", version.ref = "mokoMvvmVersion" }
+mokoMvvmViewBinding = { module = "dev.icerock.moko:mvvm-viewbinding", version.ref = "mokoMvvmVersion" }
 mokoMvvmDataBinding = { module = "dev.icerock.moko:mvvm-databinding", version.ref = "mokoMvvmVersion" }
 mokoMvvmTest = { module = "dev.icerock.moko:mvvm-test", version.ref = "mokoMvvmVersion" }
 
 mokoNetwork = { module = "dev.icerock.moko:network", version.ref = "mokoNetworkVersion" }
+mokoNetworkEngine = { module = "dev.icerock.moko:network-engine", version.ref = "mokoNetworkVersion" }
 mokoNetworkErrors = { module = "dev.icerock.moko:network-errors", version.ref = "mokoNetworkVersion" }
 
 mokoUnits = { module = "dev.icerock.moko:units", version.ref = "mokoUnitsVersion" }
+mokoUnitsBasic = { module = "dev.icerock.moko:units-basic", version.ref = "mokoUnitsVersion" }
+mokoUnitsDataBinding = { module = "dev.icerock.moko:units-databinding", version.ref = "mokoUnitsVersion" }
 mokoUnitsTest = { module = "dev.icerock.moko:units-test", version.ref = "mokoUnitsVersion" }
 
+mokoCrashReportingCore = { module = "dev.icerock.moko:crash-reporting-core", version.ref = "mokoCrashReportingVersion" }
+mokoCrashReportingCrashlytics = { module = "dev.icerock.moko:crash-reporting-crashlytics", version.ref = "mokoCrashReportingVersion" }
+mokoCrashReportingNapier = { module = "dev.icerock.moko:crash-reporting-napier", version.ref = "mokoCrashReportingVersion" }
+
+mokoKSwiftRuntime = { module = "dev.icerock.moko:kswift-runtime", version.ref = "mokoKSwiftVersion" }
 
 # multiplatform
 multiplatformSettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettingsVersion" }
+multiplatformSettingsCoroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettingsTest = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettingsVersion" }
 
 napier = { module = "io.github.aakira:napier", version.ref = "napierVersion" }
+klock = { module = "com.soywiz.korlibs.klock:klock", version.ref = "klockVersion" }
+
+# services
+firebaseBom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
+firebaseCrashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebaseCrashlyticsVersion" }
+firebaseAnalytics = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebaseAnalyticsVersion" }
+firebaseDynamicLinks = {module = "com.google.firebase:firebase-dynamic-links-ktx", version.ref = "firebaseDynamicLinksVersion"}
+
+# Compose
+composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+composeMaterial = { module = "androidx.compose.material:material" }
+composeMaterialIcons = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeVersion" }
+composeUi = { module = "androidx.compose.ui:ui" }
+composeFoundation = { module = "androidx.compose.foundation:foundation" }
+composeFoundationLayout = { module = "androidx.compose.foundation:foundation-layout" }
+composeConstraintLayout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "composeConstraintLayoutVersion" }
+composeUiPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+composeUiTooling = { module = "androidx.compose.ui:ui-tooling" }
+
+# integration of Compose and androidx
+composeNavigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigationVersion" }
+composeActivity = { module = "androidx.activity:activity-compose", version.ref = "composeActivityVersion" }
+composeLivedata = { module = "androidx.compose.runtime:runtime-livedata" }
+composeCoil = { module = "io.coil-kt:coil-compose", version.ref = "composeCoilVersion" }
+accompanistViewPager = { module = "com.google.accompanist:accompanist-pager", version.ref = "accompanistVersion"}
+accompanistNavigationAnimation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanistVersion"}
+accompanistViewPagerIndicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanistVersion"}
 
 # android
 appCompat = { module = "androidx.appcompat:appcompat", version.ref = "androidAppCompatVersion" }
@@ -106,6 +193,48 @@ lifecycleProcess = { module = "androidx.lifecycle:lifecycle-process", version.re
 lifecycleReactiveStreams = { module = "androidx.lifecycle:lifecycle-reactivestreams-ktx", version.ref = "lifecycleVersion" }
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
 multidex = { module = "androidx.multidex:multidex", version.ref = "multidexVersion" }
+navigationComponent = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationComponentVersion" }
+navigationUIComponent = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationComponentVersion" }
+navigationPlugin = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigationComponentVersion" }
+splashScreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreenVersion" }
+# Цветные и кастомизируемые тени - https://github.com/Miha-x64/FiftyShades
+fiftyShades = { module = "com.github.Miha-x64:FiftyShades", version.ref = "androidFiftyShades" }
+
+# Работа с CameraX
+# Полезные ссылки для ознакомления - https://github.com/android/camera-samples, https://github.com/android/camera-samples,
+# https://codelabs.developers.google.com/codelabs/camerax-getting-started#0
+cameraCore = { module = "androidx.camera:camera-core", version.ref = "cameraxVersion" }
+cameraCamera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraxVersion" }
+cameraLifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraxVersion" }
+cameraPreview = { module = "androidx.camera:camera-view", version.ref = "cameraViewVersion" }
+
+# Сканирование штрихкодов, qr-кодов с помощью камеры - https://github.com/journeyapps/zxing-android-embedded
+ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiToolingVersion" }
+zxingCore = { module = "com.google.zxing:core", version.ref = "zxingCoreVersion" }
+zxing = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingVersion" }
+
+# Прогрессбар по сегментам, как в инстаграм - https://github.com/TOrnelas/SegmentedProgressBar
+segmentedProgressBar = { module = "com.github.TOrnelas:SegmentedProgressBar", version.ref = "segmentedProgressBarVersion" }
+
+# must have библиотека, если нужно использовать какую то форму для ввода, много уже предусмотренных паттернов
+# таких, как телефон, даты, форматы кредитки, ip и т.д.
+# Гайд по библиотеке - https://github.com/RedMadRobot/input-mask-android
+inputMask = { module = "com.redmadrobot:input-mask-android", version.ref = "inputMaskVersion" }
+
+# easy-to-use библиотека, позволяет добавить swipe-actions для элементов списка
+# (https://github.com/chthai64/SwipeRevealLayout)
+swipeRevealLayout = { module = "com.chauthai.swipereveallayout:swipe-reveal-layout", version.ref = "swipeRevealLayoutVersion" }
+
+#Библиотека с вьюхой, которая из коробки имеет scroll/scale/double tap actions для картинки.
+#Что примечательно - хорошо работает с glide
+#Ссылка на библиотеку: https://github.com/Baseflow/PhotoView
+photoView = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoViewVersion" }
+
+# Библиотека для гибкого построения элементов/списков, особенно удобна в паре с RecyclerView. Полезна в ситуациях разработки под экраны разного размера с сохранением логики размещения/отображения списка элементов.
+# Подробнее в гитхаб https://github.com/google/# flexbox-layout
+flexBox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexBoxVersion" }
+
+decoro = { module = "ru.tinkoff.decoro:decoro", version = "1.5.1" }
 
 # android tests
 espressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
@@ -119,8 +248,15 @@ testExtJunit = { module = "androidx.test.ext:junit", version.ref = "testExtJunit
 hiltCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
 
 # gradle plugins artifacts
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradleVersion" }
+detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
+mokoMultiplatformPlugin = { module = "dev.icerock:mobile-multiplatform", version.ref = "mokoMultiplatformPluginVersion" }
 mokoResourcesGeneratorGradle = { module = "dev.icerock.moko:resources-generator", version.ref = "mokoResourcesVersion" }
 mokoNetworkGeneratorGradle = { module = "dev.icerock.moko:network-generator", version.ref = "mokoNetworkVersion" }
 mokoUnitsGeneratorGradle = { module = "dev.icerock.moko:units-generator", version.ref = "mokoUnitsVersion" }
+mokoKSwiftGradle = { module = "dev.icerock.moko:kswift-gradle-plugin", version.ref = "mokoKSwiftVersion" }
 kotlinSerializationGradle = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlinVersion" }
 hiltGradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hiltVersion" }
+firebaseCrashlyticsGradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradleVersion" }
+googleServicesGradle = { module = "com.google.gms:google-services", version.ref = "googleServicesGradleVersion" }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
+ * Copyright 2023 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
  */
 
 package org.example.library
@@ -17,7 +17,6 @@ internal fun createSharedFactory(
         settings = settings,
         antilog = TestAntilog(),
         baseUrl = "https://localhost",
-        newsUnitsFactory = TestUnitFactory(),
         httpClientEngine = MockEngine(mock)
     )
 }

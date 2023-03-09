@@ -4,9 +4,9 @@
 
 package org.example.library.domain.entity
 
+import dev.icerock.moko.network.generated.models.Article
 import dev.icerock.moko.parcelize.Parcelable
 import dev.icerock.moko.parcelize.Parcelize
-import dev.icerock.moko.network.generated.models.Article
 
 @Parcelize
 data class News(
@@ -16,7 +16,7 @@ data class News(
 ) : Parcelable
 
 internal fun Article.toDomain(): News = News(
-    id = this.url.hashCode(),
-    fullName = this.title,
-    description = this.description
+    id = url.hashCode(),
+    fullName = title,
+    description = content
 )
