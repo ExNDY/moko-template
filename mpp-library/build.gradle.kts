@@ -98,6 +98,7 @@ kswift {
     excludeLibrary("errors")
     excludeLibrary("fields")
     excludeLibrary("mvvm-flow")
+    excludeLibrary("moko-units")
     excludeLibrary("network")
     excludeLibrary("network-errors")
     excludeLibrary("resources")
@@ -109,5 +110,15 @@ kswift {
 kotlin.targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().configureEach {
     binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
         embedBitcodeMode.set(org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.DISABLE)
+    }
+}
+
+kotlin.targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().configureEach {
+    binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>().configureEach {
+        linkTask.doLast {
+            val from = File(outputDirectory, "${baseName}Swift").takeIf { it.exists() } ?: return@doLast
+            val to = File(rootDir, "ios-app/kswift")
+            from.copyRecursively(to, overwrite = true)
+        }
     }
 }

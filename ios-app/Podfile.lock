@@ -1,7 +1,5 @@
 PODS:
   - MultiPlatformLibrary (0.1.0)
-  - MultiPlatformLibrarySwift (1.0):
-    - MultiPlatformLibrary
   - MultiPlatformLibraryUnits (0.6.1):
     - MultiPlatformLibrary
     - MultiPlatformLibraryUnits/Core (= 0.6.1)
@@ -11,7 +9,6 @@ PODS:
 
 DEPENDENCIES:
   - MultiPlatformLibrary (from `../mpp-library`)
-  - MultiPlatformLibrarySwift (from `../mpp-library`)
   - MultiPlatformLibraryUnits (from `https://github.com/icerockdev/moko-units.git`, tag `release/0.8.0`)
   - SkyFloatingLabelTextField (~> 3.8.0)
 
@@ -21,8 +18,6 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   MultiPlatformLibrary:
-    :path: "../mpp-library"
-  MultiPlatformLibrarySwift:
     :path: "../mpp-library"
   MultiPlatformLibraryUnits:
     :git: https://github.com/icerockdev/moko-units.git
@@ -35,10 +30,9 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   MultiPlatformLibrary: 17d6f2734e9e3594f158c753a7b3163924927bf5
-  MultiPlatformLibrarySwift: 635dca1a6c1704820e36afb79e97bf776b291638
   MultiPlatformLibraryUnits: 49f0879a5d5ac87a965d6ab22aa41c49d1304477
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: e66c30a0f46531aee7af15ed7f317f03c0bf27a8
+PODFILE CHECKSUM: d628262896eb084e72bbc93d366dd5ae63a75726
 
 COCOAPODS: 1.12.0
