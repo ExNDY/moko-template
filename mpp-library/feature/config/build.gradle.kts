@@ -11,7 +11,10 @@ dependencies {
 
     androidMainImplementation(libs.lifecycleViewModel)
 
+    commonMainImplementation(libs.mokoMvvmState)
     commonMainImplementation(libs.mokoMvvmLiveData)
+    commonMainImplementation(libs.mokoMvvmFlow)
     commonMainImplementation(libs.mokoResources)
-    commonMainImplementation(libs.mokoFields)
+    commonMainImplementation(libs.mokoFieldsCore)
+    commonMainApi(libs.mokoFieldsLiveData)
 }

@@ -17,6 +17,7 @@ dependencies {
 
     commonMainImplementation(libs.mokoParcelize)
     commonMainImplementation(libs.mokoNetwork)
+    commonMainImplementation(libs.mokoNetworkEngine)
 
     commonMainImplementation(libs.multiplatformSettings)
     commonMainImplementation(libs.napier)

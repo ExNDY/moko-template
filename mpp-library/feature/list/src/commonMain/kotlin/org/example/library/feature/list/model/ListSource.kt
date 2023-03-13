@@ -5,5 +5,5 @@
 package org.example.library.feature.list.model
 
 interface ListSource<T> {
-    suspend fun getList(): List<T>
+    suspend fun getList(): List<News>
 }

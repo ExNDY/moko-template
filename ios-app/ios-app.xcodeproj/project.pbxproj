@@ -10,7 +10,6 @@
 		451D7B1A235845B100095112 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451D7B19235845B100095112 /* AppComponent.swift */; };
 		4539A7B3235437660081362B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539A7B2235437660081362B /* NewsViewController.swift */; };
 		4539A7B52354376F0081362B /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539A7B42354376F0081362B /* ConfigViewController.swift */; };
-		4539A7B723543B1C0081362B /* NewsListUnitsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539A7B623543B1C0081362B /* NewsListUnitsFactory.swift */; };
 		4539A7BE2354471C0081362B /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539A7BD2354471C0081362B /* NewsTableViewCell.swift */; };
 		4539A7C02354472A0081362B /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4539A7BF2354472A0081362B /* NewsTableViewCell.xib */; };
 		4587E6063EE4F8F2D5A7AFB7 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 363BA6BFAA3FA87230445070 /* Pods_ios_app.framework */; };
@@ -18,6 +17,7 @@
 		45F4791E219463C7003D25FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45F47914219463C7003D25FA /* Main.storyboard */; };
 		45F47921219463C7003D25FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F4791A219463C7003D25FA /* Assets.xcassets */; };
 		45F47922219463C7003D25FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F4791B219463C7003D25FA /* AppDelegate.swift */; };
+		D25411B529BAF31100A64920 /* kswift in Resources */ = {isa = PBXBuildFile; fileRef = D25411B429BAF31100A64920 /* kswift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,6 @@
 		451D7B19235845B100095112 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
 		4539A7B2235437660081362B /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		4539A7B42354376F0081362B /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
-		4539A7B623543B1C0081362B /* NewsListUnitsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListUnitsFactory.swift; sourceTree = "<group>"; };
 		4539A7BD2354471C0081362B /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		4539A7BF2354472A0081362B /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		45964D362282A1FD00C16658 /* mpp-library */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "mpp-library"; path = "../mpp-library"; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		62AD21CBE99F192264A8B2DB /* Pods-ios-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.debug.xcconfig"; sourceTree = "<group>"; };
 		A644D2F1C5377C40A53FCD6A /* Pods-TestProj.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProj.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestProj/Pods-TestProj.release.xcconfig"; sourceTree = "<group>"; };
 		C83C539745B5CCD484267966 /* Pods-ios-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-app/Pods-ios-app.release.xcconfig"; sourceTree = "<group>"; };
+		D25411B429BAF31100A64920 /* kswift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kswift; sourceTree = SOURCE_ROOT; };
 		DFBDF7D3559D080FDCA444A6 /* Pods-TestProj.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProj.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestProj/Pods-TestProj.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,6 @@
 			children = (
 				4539A7BD2354471C0081362B /* NewsTableViewCell.swift */,
 				4539A7BF2354472A0081362B /* NewsTableViewCell.xib */,
-				4539A7B623543B1C0081362B /* NewsListUnitsFactory.swift */,
 			);
 			path = units;
 			sourceTree = "<group>";
@@ -108,6 +107,7 @@
 		45F47910219463C7003D25FA /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D25411B429BAF31100A64920 /* kswift */,
 				451D7B1C235845E500095112 /* units */,
 				451D7B1B235845D400095112 /* view */,
 				45F47911219463C7003D25FA /* Resources */,
@@ -165,7 +165,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = "IceRock Development";
 				TargetAttributes = {
 					287627FE1F319065007FA12B = {
@@ -197,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25411B529BAF31100A64920 /* kswift in Resources */,
 				45F4791E219463C7003D25FA /* Main.storyboard in Resources */,
 				45F4791D219463C7003D25FA /* LaunchScreen.storyboard in Resources */,
 				4539A7C02354472A0081362B /* NewsTableViewCell.xib in Resources */,
@@ -252,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
-				4539A7B723543B1C0081362B /* NewsListUnitsFactory.swift in Sources */,
 				4539A7BE2354471C0081362B /* NewsTableViewCell.swift in Sources */,
 				4539A7B52354376F0081362B /* ConfigViewController.swift in Sources */,
 				4539A7B3235437660081362B /* NewsViewController.swift in Sources */,
@@ -305,6 +305,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -343,6 +344,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CURRENT_PROJECT_VERSION = 0;
+				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;

@@ -4,7 +4,6 @@
 
 package org.example.library.feature.config.di
 
-import dev.icerock.moko.mvvm.dispatcher.EventsDispatcher
 import org.example.library.feature.config.model.ConfigStore
 import org.example.library.feature.config.presentation.ConfigViewModel
 
@@ -14,10 +13,7 @@ class ConfigFactory(
     private val defaultToken: String,
     private val defaultLanguage: String
 ) {
-    fun createConfigViewModel(
-        eventsDispatcher: EventsDispatcher<ConfigViewModel.EventsListener>
-    ) = ConfigViewModel(
-        eventsDispatcher = eventsDispatcher,
+    fun createConfigViewModel() = ConfigViewModel(
         configStore = configStore,
         validations = validations,
         defaultToken = defaultToken,

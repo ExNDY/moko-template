@@ -12,9 +12,11 @@ buildscript {
     dependencies {
         classpath(libs.mokoResourcesGeneratorGradle)
         classpath(libs.mokoNetworkGeneratorGradle)
-        classpath(libs.mokoUnitsGeneratorGradle)
         classpath(libs.kotlinSerializationGradle)
         classpath(libs.hiltGradle)
+        classpath(libs.mokoKSwiftGradle)
+        classpath(libs.androidGradlePlugin)
+        classpath(libs.mokoUnitsGeneratorGradle)
         classpath(":build-logic")
     }
 }
@@ -32,7 +34,9 @@ allprojects {
     }
 }
 
-tasks.register("clean", Delete::class).configure {
-    group = "build"
-    delete(rootProject.buildDir)
+tasks {
+    register("clean", Delete::class).configure {
+        group = "build"
+        delete(rootProject.buildDir)
+    }
 }

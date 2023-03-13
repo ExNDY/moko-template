@@ -4,20 +4,20 @@
 
 package org.example.library.domain.di
 
-import io.github.aakira.napier.Napier
 import com.russhwolf.settings.Settings
 import dev.icerock.moko.network.exceptionfactory.HttpExceptionFactory
 import dev.icerock.moko.network.exceptionfactory.parser.ErrorExceptionParser
 import dev.icerock.moko.network.exceptionfactory.parser.ValidationExceptionParser
-import dev.icerock.moko.network.features.ExceptionFeature
-import dev.icerock.moko.network.features.TokenFeature
 import dev.icerock.moko.network.generated.apis.NewsApi
+import dev.icerock.moko.network.plugins.ExceptionPlugin
+import dev.icerock.moko.network.plugins.TokenPlugin
+import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.features.logging.LogLevel
-import io.ktor.client.features.logging.Logger
-import io.ktor.client.features.logging.Logging
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.json.Json
 import org.example.library.domain.repository.ConfigRepository
@@ -40,10 +40,9 @@ class DomainFactory(
     private val httpClient: HttpClient by lazy {
         // resolve class properties into local variables to pass them into freeze lambda
         val json: Json = json
-        val keyValueStorage: KeyValueStorage = keyValueStorage
 
         val config: HttpClientConfig<*>.() -> Unit = {
-            install(ExceptionFeature) {
+            install(ExceptionPlugin) {
                 exceptionFactory = HttpExceptionFactory(
                     defaultParser = ErrorExceptionParser(json),
                     customParsers = mapOf(
@@ -59,11 +58,9 @@ class DomainFactory(
                 }
                 level = LogLevel.HEADERS
             }
-            install(TokenFeature) {
+            install(TokenPlugin) {
                 tokenHeaderName = "Authorization"
-                tokenProvider = object : TokenFeature.TokenProvider {
-                    override fun getToken(): String? = keyValueStorage.token
-                }
+                tokenProvider = TokenPlugin.TokenProvider { keyValueStorage.token }
             }
 
             // disable standard BadResponseStatus - exceptionfactory do it for us
@@ -73,6 +70,7 @@ class DomainFactory(
         if (httpClientEngine != null) HttpClient(httpClientEngine, config)
         else HttpClient(config)
     }
+
 
     private val newsApi: NewsApi by lazy {
         NewsApi(
